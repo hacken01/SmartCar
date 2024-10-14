@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from Tkinter import *
-from socket import *      # Import necessary modules
+from tkinter import *
+import socket
 import os
 
 top = Tk()   # Create a top window
@@ -12,7 +12,7 @@ PORT = 21567
 BUFSIZ = 1024             # buffer size
 ADDR = (HOST, PORT)
 
-tcpCliSock = socket(AF_INET, SOCK_STREAM)   # Create a socket
+tcpCliSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)   # Create a socket
 tcpCliSock.connect(ADDR)                    # Connect with the server
 
 runbtn = 'Run'
@@ -35,95 +35,95 @@ def setup():
 # car move forward.
 # ============================================================================= 
 def run(event):
-	global runbtn
-	print 'motor ', runbtn
-	if runbtn == 'Stop':
-		tcpCliSock.send('motor_stop')
-		runbtn = 'Run'
-	elif runbtn == 'Run':
-		tcpCliSock.send('motor_run')
-		runbtn = 'Stop'
+    global runbtn
+    print('motor ', runbtn)
+    if runbtn == 'Stop':
+        tcpCliSock.send('motor_stop'.encode())
+        runbtn = 'Run'
+    elif runbtn == 'Run':
+        tcpCliSock.send('motor_run'.encode())
+        runbtn = 'Stop'
 
 def confirm(event):
-	tcpCliSock.send('confirm')
-	
-	top.quit()
-	tcpCliSock.close()
+    tcpCliSock.send('confirm'.encode())
+    
+    top.quit()
+    tcpCliSock.close()
 
 #--------motor---------------------
 def left_reverse(event):
-	left_cmd = 'leftreverse'
-	tcpCliSock.send(left_cmd)
+    left_cmd = 'leftreverse'
+    tcpCliSock.send(left_cmd.encode())
 
 def right_reverse(event):
-	right_cmd = 'rightreverse'
-	tcpCliSock.send(right_cmd)
+    right_cmd = 'rightreverse'
+    tcpCliSock.send(right_cmd.encode())
 #----------------------------------------
 
 #---------turing---------------
 def fineturn_left(event):
-	print 'fineturn_left'
-	cmd = 'offset-1'
-	tcpCliSock.send(cmd)
+    print('fineturn_left')
+    cmd = 'offset-1'
+    tcpCliSock.send(cmd.encode())
 
 def fineturn_right(event):
-	print 'fineturn_right'
-	cmd = 'offset+1'
-	tcpCliSock.send(cmd)
+    print('fineturn_right')
+    cmd = 'offset+1'
+    tcpCliSock.send(cmd.encode())
 
 def coarseturn_left(event):
-	print 'coarseturn_left'
-	cmd = 'offset-10'
-	tcpCliSock.send(cmd)
+    print('coarseturn_left')
+    cmd = 'offset-10'
+    tcpCliSock.send(cmd.encode())
 
 def coarseturn_right(event):
-	print 'coarseturn_right'
-	cmd = 'offset+10'
-	tcpCliSock.send(cmd)
+    print('coarseturn_right')
+    cmd = 'offset+10'
+    tcpCliSock.send(cmd.encode())
 #------------------------------
 
 #-----------mount-----------------
 #-------------x------------------
 def finex_left(event):
-	cmd = 'offsetx+1'
-	print cmd
-	tcpCliSock.send(cmd)
+    cmd = 'offsetx+1'
+    print(cmd)
+    tcpCliSock.send(cmd.encode())
 
 def finex_right(event):
-	cmd = 'offsetx-1'
-	print cmd
-	tcpCliSock.send(cmd)
+    cmd = 'offsetx-1'
+    print(cmd)
+    tcpCliSock.send(cmd.encode())
 
 def coarsex_left(event):
-	cmd = 'offsetx+10'
-	print cmd
-	tcpCliSock.send(cmd)
+    cmd = 'offsetx+10'
+    print(cmd)
+    tcpCliSock.send(cmd.encode())
 
 def coarsex_right(event):
-	cmd = 'offsetx-10'
-	print cmd
-	tcpCliSock.send(cmd)
+    cmd = 'offsetx-10'
+    print(cmd)
+    tcpCliSock.send(cmd.encode())
 
 #---------y-----------------------
 def finey_down(event):
-	print 'finey_down'
-	cmd = 'offsety-1'
-	tcpCliSock.send(cmd)
+    print('finey_down')
+    cmd = 'offsety-1'
+    tcpCliSock.send(cmd.encode())
 
 def finey_up(event):
-	print 'finey_up'
-	cmd = 'offsety+1'
-	tcpCliSock.send(cmd)
+    print('finey_up')
+    cmd = 'offsety+1'
+    tcpCliSock.send(cmd.encode())
 
 def coarsey_down(event):
-	print 'coarsey_down'
-	cmd = 'offsety-10'
-	tcpCliSock.send(cmd)
+    print('coarsey_down')
+    cmd = 'offsety-10'
+    tcpCliSock.send(cmd.encode())
 
 def coarsey_up(event):
-	print 'coarsey_up'
-	cmd = 'offsety+10'
-	tcpCliSock.send(cmd)
+    print('coarsey_up')
+    cmd = 'offsety+10'
+    tcpCliSock.send(cmd.encode())
 #--------------------------------
 
 # =============================================================================
@@ -131,9 +131,9 @@ def coarsey_up(event):
 # and server.
 # =============================================================================
 def quit_fun(event):
-	top.quit()
-	tcpCliSock.send('motor_stop')
-	tcpCliSock.close()
+    top.quit()
+    tcpCliSock.send('motor_stop'.encode())
+    tcpCliSock.close()
 
 # =============================================================================
 # Create buttons on motor

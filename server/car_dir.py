@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import Sunfounder_PWM_Servo_Driver.Servo_init as servo
+import PCA9685 as servo
 import time                # Import necessary modules
 
 FILE_CONFIG = "/home/pi/Sunfounder_Smart_Video_Car_Kit_for_RaspberryPi/server/config"
@@ -7,7 +7,7 @@ FILE_CONFIG = "/home/pi/Sunfounder_Smart_Video_Car_Kit_for_RaspberryPi/server/co
 def Map(x, in_min, in_max, out_min, out_max):
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
-def setup():
+def setup(busnum=None):
     global leftPWM, rightPWM, homePWM, pwm
     leftPWM = 400
     homePWM = 450
@@ -23,26 +23,30 @@ def setup():
     leftPWM += offset
     homePWM += offset
     rightPWM += offset
-    pwm = servo.init()         # Initialize the servo controller.
+    if busnum == None:
+        pwm = servo.PWM()         # Initialize the servo controller.
+    else:
+        pwm = servo.PWM(busnum)
+    pwm.frequency = 60
 
 def turn_left():
     global leftPWM
-    pwm.setPWM(0, 0, leftPWM)  # CH0
+    pwm.write(0, 0, leftPWM)  # CH0
 
 def turn_right():
     global rightPWM
-    pwm.setPWM(0, 0, rightPWM)
+    pwm.write(0, 0, rightPWM)
 
 def turn(angle):
     angle = Map(angle, 0, 255, leftPWM, rightPWM)
-    pwm.setPWM(0, 0, angle)
+    pwm.write(0, 0, angle)
 
 def home():
     global homePWM
-    pwm.setPWM(0, 0, homePWM)
+    pwm.write(0, 0, homePWM)
 
 def calibrate(x):
-    pwm.setPWM(0, 0, 450+x)
+    pwm.write(0, 0, 450+x)
 
 def test():
     while True:

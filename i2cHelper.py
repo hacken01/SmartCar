@@ -120,21 +120,21 @@ def main():
         time.sleep(1)
         check = input('   Do you want to reboot now?(y/n) ')
         flag = True
-		while flag:
-			if check in ['y', 'Y']:
-				print(' Your Raspberry Pi will be reboot in 5 seconds.')
-				for i in range(6):
-					time.sleep(1)
-					print(' ', 5-i)
-				print(' Rebooting...')
-				flag = False
-				os.system('reboot')
-			elif check in ['n', 'N']:
-				time.sleep(1)
-				print(' Done.')
-				flag = False
-			else:
-				print(' It should be "Y" or "N", in capital or not. Try again.')
+        while flag:
+            if check in ['y', 'Y']:
+                print(' Your Raspberry Pi will be reboot in 5 seconds.')
+                for i in range(6):
+                    time.sleep(1)
+                    print(' ', 5-i)
+                print(' Rebooting...')
+                flag = False
+                os.system('reboot')
+            elif check in ['n', 'N']:
+                time.sleep(1)
+                print(' Done.')
+                flag = False
+            else:
+                print(' It should be "Y" or "N", in capital or not. Try again.')
 
 if __name__ == '__main__':
     main()

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-import RPi.GPIO as GPIO
-import video_dir
-import car_dir
-import motor
+import RPi.GPIO as GPIO   
+import video_dir   #local file
+import car_dir   #local file
+import motor   # local file
 from socket import *
 from time import ctime          # Import necessary modules   
 

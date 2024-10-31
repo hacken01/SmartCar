@@ -1,6 +1,5 @@
 
-This Project is a Sounfounder project, however, I will be working on upgrading it to python 3.
-Current project only works on python 2
+This Project is a Sounfounder project, and has been upgraded to Python 3
 ## Sunfounder Smart Video Car Kit for Raspberry Pi
 
 Quick Links:

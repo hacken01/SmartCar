@@ -46,7 +46,7 @@ def home():
     pwm.write(0, 0, homePWM)
 
 def calibrate(x):
-    pwm.write(0, 0, 450+x)
+    pwm.write(0, 0, 300+x)
 
 def test():
     while True:

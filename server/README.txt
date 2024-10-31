@@ -11,3 +11,4 @@ sudo raspi-config # to enable i2c
 	Advance options -> Interface options -> I2C -> Yes
 
 
+https://github.com/morrownr/88x2bu-20210702 -> for the wifi card used AC 1300
